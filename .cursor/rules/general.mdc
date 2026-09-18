@@ -1,10 +1,10 @@
 # Generelle Rahmenbedingungen
 
-- Projektname Vokaltrainer
+- Projektname Vokabeltrainer
 - Maven Projekt
-- Quarkus (stable relase)
+- Quarkus (stable release)
 - Java 25
-- Typescript (strict mode)
+- TypeScript (strict mode)
 - shadcn/ui
-- Codeverwaltung in Github 
-- Github repository "vocabulary"
+- Codeverwaltung in GitHub
+- GitHub repository "vocabulary"

@@ -2,7 +2,7 @@
 
 # Anmeldung (Loginseite)
 Die Anwendung startet mit einer Loginseite. Hier wird der Benutzername und das Passwort eingegeben.
-Alternativ kann sich ein Benutzer registrieren. Auf der Registrierungsseite registriert sich der Benutzer mit Benutzername und Passwort. Das Passwort muss wiederholt werden und beide Passwörter müssen iedentisch sein. Es gibt keine Passwortregeln.
+Alternativ kann sich ein Benutzer registrieren. Auf der Registrierungsseite registriert sich der Benutzer mit Benutzername und Passwort. Das Passwort muss wiederholt werden und beide Passwörter müssen identisch sein. Es gibt keine Passwortregeln.
 Kann der Benutzer über Benutzername und Passwort nicht gefunden werden, verbleibt die Anwendung mit einem entsprechenden Hinweis auf der Loginseite.
 
 # Sprachauswahl (Sprachauswahlseite)
@@ -12,9 +12,9 @@ Nach einer erfolgreichen Anmeldung wählt der Benutzer die Lernsprache aus. Es w
 Es gibt zwei Trainingsmodi: Vokabeln und Situationen
 
 ## Trainingsmodus: Vokabeln (Vokabelseite)
-Auf dieser Seite kann der Anwender wählen, ob er Substantive, Verben oder Adjektive lernen möchte. In der Datenbank befinden sich Datensätze mit gängigen Substantiven, Verben und Adjektiven. Ebenfalls auf dieser Seite werden Vokabel, ein Eingabefeld für die Übersetzung und eine "Prüfe"-Schltfläche angeboten.
+Auf dieser Seite kann der Anwender wählen, ob er Substantive, Verben oder Adjektive lernen möchte. In der Datenbank befinden sich Datensätze mit gängigen Substantiven, Verben und Adjektiven. Ebenfalls auf dieser Seite werden Vokabel, ein Eingabefeld für die Übersetzung und eine "Prüfe"-Schaltfläche angeboten.
 ### Substantive 
-Ein Substantiv hat einen Singular und einen Pural. Singular und Plural haben jeweils mehrere, aber mindestens jeweils eine deutsche Übersetzung.
+Ein Substantiv hat einen Singular und einen Plural. Singular und Plural haben jeweils mehrere, aber mindestens jeweils eine deutsche Übersetzung.
 ### Verben
 Verben haben die Gegenwartsform und zwei Vergangenheitsformen. Jedes Verb hat in allen seinen drei Zeitformen mehrere, aber mindestens eine deutsche Übersetzung.
 ### Adjektive
