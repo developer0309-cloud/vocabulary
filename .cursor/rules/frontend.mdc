@@ -1,0 +1,16 @@
+# Projekt-Standard & Technische Rahmenbedingungen für das Frontend
+
+## Tech Stack
+- Komponentenbibliothek: shadcn/ui
+- Sprache: TypeScript (strict mode)
+- Styling: Tailwind CSS
+
+## Code-Regeln & Architektur
+- Verwende ausschließlich Functional Components mit TypeScript-Interfaces.
+- Keine `any`-Types erlaubt.
+- Halte Business-Logik strikt von UI-Komponenten getrennt (Server Actions oder Hooks nutzen).
+- Schreibe für neue Utility-Funktionen immer passende Unit-Tests mit Vitest.
+
+## Handling von Fehlern & Logging
+- Verwende für API-Responses strukturierte Zod-Schemas zur Validierung.
+- Fehler müssen über das zentrale Logger-Modul (`@/lib/logger`) erfasst werden.
