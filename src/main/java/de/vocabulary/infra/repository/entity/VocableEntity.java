@@ -10,6 +10,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
@@ -28,7 +29,9 @@ import java.util.Set;
     uniqueConstraints =
         @UniqueConstraint(
             name = "uk_vocable_disjoint",
-            columnNames = {"vocable_text_normalized", "language", "context", "form"}))
+            columnNames = {"vocable_text_normalized", "language", "context", "form"}),
+    indexes =
+        @Index(name = "idx_vocable_language_context", columnList = "language, context"))
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "context", discriminatorType = DiscriminatorType.STRING, length = 32)
 public abstract class VocableEntity {

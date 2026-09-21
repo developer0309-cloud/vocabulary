@@ -21,6 +21,7 @@ Aggregate root: **Vocable** (domain term: Vokabel). Contexts Noun, Verb, and Adj
   - Noun: `SINGULAR` \| `PLURAL`
   - Verb: `PRESENT` \| `FIRST_PAST` \| `SECOND_PAST`
   - Adjective: `BASE` \| `FIRST_COMPARATIVE` \| `SECOND_COMPARATIVE`
+- Index `idx_vocable_language_context` on `(language, context)` — random and count by language and context
 
 ## Entity vocable_association
 - German vocable (language `GERMAN`)
@@ -30,4 +31,4 @@ An English vocable is always associated with at least one German vocable and vic
 
 Delete: remove vocables in the deletion chain first, then orphan rows in `vocable_association`. A vocable without an association is deleted. No vocable without a partner.
 
-Mapping: table `vocable` (single-table inheritance) and table `vocable_association`.
+Mapping: table `vocable` (single-table inheritance) and table `vocable_association`. MariaDB DDL: `src/main/resources/db/mariadb/schema.sql`.

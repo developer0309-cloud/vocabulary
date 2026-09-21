@@ -9,7 +9,7 @@ Aggregatwurzel ist die **Vokabel**. Alle Vokabeln sind **disjunkt**: jede Instan
 - **Sprache**: genau eine
 - **Kontext**: genau einer
 - **Ausprägung**: genau eine, abhängig vom Kontext
-- **Zuordnung**: jede englische Vokabel ist mindestens einer deutschen Vokabel zugeordnet; jede deutsche Vokabel ist mindestens einer englischen Vokabel zugeordnet. Das erzwingt die Datenbank: `pflicht_zuordnung_id` ist `NOT NULL` und verweist auf eine Zuordnung. Zugeordnete Vokabeln haben denselben Kontext und dieselbe Ausprägung. Eine Vokabel kann mehreren Partnern der anderen Sprache zugeordnet sein (N:M). Es darf keine Vokabel ohne Partner geben.
+- **Zuordnung**: jede englische Vokabel ist mindestens einer deutschen Vokabel zugeordnet; jede deutsche Vokabel ist mindestens einer englischen Vokabel zugeordnet. Das erzwingt die Datenbank: `required_association_id` ist `NOT NULL` und verweist auf eine Zuordnung. Zugeordnete Vokabeln haben denselben Kontext und dieselbe Ausprägung. Eine Vokabel kann mehreren Partnern der anderen Sprache zugeordnet sein (N:M). Es darf keine Vokabel ohne Partner geben.
 - **Löschen**: Wird eine Vokabel gelöscht, werden ihre Zuordnungen mitgelöscht. Hat ein bisheriger Partner danach keine Zuordnung mehr, wird dieser Partner ebenfalls gelöscht (rekursiv, bis keine verwaiste Vokabel übrig ist).
 
 ## Sprache
