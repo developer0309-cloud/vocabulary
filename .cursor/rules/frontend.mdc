@@ -1,9 +1,19 @@
+---
+alwaysApply: true
+---
+
 # Projekt-Standard & Technische Rahmenbedingungen für das Frontend
 
 ## Tech Stack
 - Komponentenbibliothek: shadcn/ui
 - Sprache: TypeScript (strict mode)
 - Styling: Tailwind CSS
+- shadcn/ui
+- ReactJS
+- react-router-dom
+- SPA
+- http-root: vocabulary
+- Anbindung an Backend via Rest-API
 
 ## Code-Regeln & Architektur
 - Verwende ausschließlich Functional Components mit TypeScript-Interfaces.
@@ -13,4 +23,3 @@
 
 ## Handling von Fehlern & Logging
 - Verwende für API-Responses strukturierte Zod-Schemas zur Validierung.
-- Fehler müssen über das zentrale Logger-Modul (`@/lib/logger`) erfasst werden.

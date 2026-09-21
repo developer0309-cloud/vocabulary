@@ -1,10 +1,12 @@
+---
+alwaysApply: true
+---
+
 # Generelle Rahmenbedingungen
 
 - Projektname Vokaltrainer
-- Maven Projekt
-- Quarkus (stable relase)
+- Maven 3.9 Projekt
 - Java 25
 - Typescript (strict mode)
-- shadcn/ui
 - Codeverwaltung in Github 
 - Github repository "vocabulary"
