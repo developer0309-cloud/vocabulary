@@ -15,7 +15,7 @@ public class AdjectiveEntity extends VocableEntity {
 
   @NotNull
   @Enumerated(EnumType.STRING)
-  @Column(name = "form", nullable = false, length = 32)
+  @Column(name = "form", nullable = false, length = 32, columnDefinition = "varchar(32)")
   private AdjectiveForm form;
 
   protected AdjectiveEntity() {}

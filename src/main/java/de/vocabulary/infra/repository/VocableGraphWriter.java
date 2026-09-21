@@ -56,7 +56,7 @@ public class VocableGraphWriter {
           .setParameter(4, node.getLanguage().name())
           .setParameter(5, node.getRequiredAssociation().getId())
           .setParameter(6, node.getContext().name())
-          .setParameter(7, node.getForm().name())
+          .setParameter(7, node.getForm().toString())
           .executeUpdate();
     }
   }

@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import org.hibernate.Hibernate;
 
 final class VocablePersistenceMapper {
 
@@ -85,6 +86,7 @@ final class VocablePersistenceMapper {
   }
 
   private Vocable toVocable(VocableEntity entity, Map<String, Vocable> cache) {
+    entity = Hibernate.unproxy(entity, VocableEntity.class);
     Vocable cached = cache.get(entity.getId());
     if (cached != null) {
       return cached;
