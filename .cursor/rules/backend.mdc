@@ -11,5 +11,7 @@ alwaysApply: true
 - Blaze Persistence
 - JPA entity classes live in `de.vocabulary.infra.repository.entity`
 - JPA, SQL, and Blaze Persistence types live in `de.vocabulary.infra.repository` (and subpackages)
+- Application services live in `de.vocabulary.service`
+- REST (v1) lives in `de.vocabulary.interfaces.v1` (`interface` is a Java keyword and cannot be a package name)
 - `de.vocabulary.domain` stays free of persistence APIs
 
