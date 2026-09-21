@@ -1,19 +1,15 @@
 package de.vocabulary.infra.repository.seed;
 
 import de.vocabulary.domain.AdjectiveForm;
-import de.vocabulary.domain.Association;
 import de.vocabulary.domain.Language;
 import de.vocabulary.domain.NounForm;
 import de.vocabulary.domain.VerbForm;
 import de.vocabulary.domain.Vocable;
+import de.vocabulary.infra.repository.VocableGraphWriter;
 import de.vocabulary.infra.repository.VocableRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 /**
  * Loads a German–English catalog covering every context and form. Associations
@@ -23,12 +19,12 @@ import java.util.Set;
 public class VocabularySeed {
 
   private final VocableRepository vocables;
-  private final EntityManager entityManager;
+  private final VocableGraphWriter graphs;
 
   @Inject
-  public VocabularySeed(VocableRepository vocables, EntityManager entityManager) {
+  public VocabularySeed(VocableRepository vocables, VocableGraphWriter graphs) {
     this.vocables = vocables;
-    this.entityManager = entityManager;
+    this.graphs = graphs;
   }
 
   @Transactional
@@ -125,47 +121,6 @@ public class VocabularySeed {
   }
 
   private void persistGraph(Vocable root) {
-    root.assertPersistable();
-    Set<Vocable> nodes = new LinkedHashSet<>();
-    collect(root, nodes);
-    Set<String> writtenAssociations = new HashSet<>();
-    for (Vocable node : nodes) {
-      for (Association association : node.getAssociationsAsGerman()) {
-        if (!writtenAssociations.add(association.getId())) {
-          continue;
-        }
-        entityManager
-            .createNativeQuery(
-                "insert into vocable_association"
-                    + " (id, german_vocable_id, english_vocable_id) values (?1, ?2, ?3)")
-            .setParameter(1, association.getId())
-            .setParameter(2, association.getGerman().getId())
-            .setParameter(3, association.getEnglish().getId())
-            .executeUpdate();
-      }
-    }
-    for (Vocable node : nodes) {
-      node.assertPersistable();
-      entityManager
-          .createNativeQuery(
-              "insert into vocable (id, vocable_text, vocable_text_normalized, language,"
-                  + " required_association_id, context, form)"
-                  + " values (?1, ?2, ?3, ?4, ?5, ?6, ?7)")
-          .setParameter(1, node.getId())
-          .setParameter(2, node.getText())
-          .setParameter(3, node.getTextNormalized())
-          .setParameter(4, node.getLanguage().name())
-          .setParameter(5, node.getRequiredAssociation().getId())
-          .setParameter(6, node.getContext().name())
-          .setParameter(7, node.getForm().name())
-          .executeUpdate();
-    }
-  }
-
-  private void collect(Vocable vocable, Set<Vocable> found) {
-    if (!found.add(vocable)) {
-      return;
-    }
-    vocable.getAssociates().forEach(partner -> collect(partner, found));
+    graphs.persist(root);
   }
 }
