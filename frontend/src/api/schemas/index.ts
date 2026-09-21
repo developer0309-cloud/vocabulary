@@ -15,6 +15,8 @@ export {
   randomVocableQuerySchema,
   type RandomVocableQuery,
 } from "./random-vocable-query";
+export { scoreRequestSchema, type ScoreRequest } from "./score-request";
+export { scoreResponseSchema, type ScoreResponse } from "./score-response";
 export {
   associateSchema,
   vocableResponseSchema,

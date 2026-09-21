@@ -73,6 +73,7 @@ public class VocableRepository {
     return Optional.of(mapper.toDomain(found.get(0)));
   }
 
+  @Transactional
   public Optional<Vocable> findById(String id) {
     VocableEntity entity = entityManager.find(VocableEntity.class, id);
     if (entity == null) {

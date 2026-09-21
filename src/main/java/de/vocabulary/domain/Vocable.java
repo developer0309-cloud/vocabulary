@@ -92,6 +92,18 @@ public abstract class Vocable {
     }
   }
 
+  /**
+   * Case-insensitive match of {@code translation} against any associate text.
+   */
+  public boolean acceptsTranslation(String translation) {
+    if (translation == null || translation.isBlank()) {
+      return false;
+    }
+    String answer = translation.trim();
+    return getAssociates().stream()
+        .anyMatch(associate -> associate.getText().equalsIgnoreCase(answer));
+  }
+
   /** Partners in the other language. */
   public Set<Vocable> getAssociates() {
     if (language == Language.GERMAN) {

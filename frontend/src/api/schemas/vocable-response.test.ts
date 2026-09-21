@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { errorResponseSchema } from "./error-response";
 import { randomVocableQuerySchema } from "./random-vocable-query";
+import { scoreRequestSchema } from "./score-request";
+import { scoreResponseSchema } from "./score-response";
 import { vocableResponseSchema } from "./vocable-response";
 
 const house: unknown = {
@@ -75,5 +77,30 @@ describe("errorResponseSchema", () => {
     ).toEqual({
       message: "No vocable found for language GERMAN and context NOUN",
     });
+  });
+});
+
+describe("scoreRequestSchema", () => {
+  it("trims translation text", () => {
+    expect(scoreRequestSchema.parse({ translation: "  house  " })).toEqual({
+      translation: "house",
+    });
+  });
+});
+
+describe("scoreResponseSchema", () => {
+  it("parses a server score result", () => {
+    const parsed = scoreResponseSchema.parse({
+      correct: true,
+      associates: [
+        {
+          id: "22222222-2222-4222-8222-222222222222",
+          text: "house",
+          language: "ENGLISH",
+          form: "SINGULAR",
+        },
+      ],
+    });
+    expect(parsed.correct).toBe(true);
   });
 });

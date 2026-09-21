@@ -6,6 +6,7 @@ import de.vocabulary.domain.Vocable;
 import de.vocabulary.infra.repository.VocableRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -23,5 +24,14 @@ public class VocableService {
     Objects.requireNonNull(language, "language");
     Objects.requireNonNull(context, "context");
     return vocables.findRandom(language, context);
+  }
+
+  @Transactional
+  public Optional<TranslationScore> score(String vocableId, String translation) {
+    Objects.requireNonNull(vocableId, "vocableId");
+    Objects.requireNonNull(translation, "translation");
+    return vocables
+        .findById(vocableId)
+        .map(vocable -> new TranslationScore(vocable.acceptsTranslation(translation), vocable));
   }
 }
