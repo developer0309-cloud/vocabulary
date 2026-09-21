@@ -7,6 +7,9 @@ alwaysApply: true
 ## Tech Stack
 - Sprache: Java 25
 - Formatierung nach Google Java Style
-- Quarkus (stable relase)
+- Quarkus (stable release)
 - Blaze Persistence
+- JPA entity classes live in `de.vocabulary.infra.repository.entity`
+- JPA, SQL, and Blaze Persistence types live in `de.vocabulary.infra.repository` (and subpackages)
+- `de.vocabulary.domain` stays free of persistence APIs
 

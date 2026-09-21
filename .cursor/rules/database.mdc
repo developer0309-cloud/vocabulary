@@ -1,8 +1,33 @@
 ---
 alwaysApply: true
 ---
-# Projekt-Standard & Technische Rahmenbedingungen für die Datenbank
+# Database standards
 
-## Tech Stack
-- Datenbankserver: MariaDB
-- Datenbank: vocabulary
+## Tech stack
+- Database server: MariaDB
+- Database: vocabulary
+
+# Model
+
+Aggregate root: **Vocable** (domain term: Vokabel). Contexts Noun, Verb, and Adjective are disjoint specializations. Unique key: `(vocable_text_normalized, language, context, form)`; `vocable_text_normalized` is lower-case text (case-insensitive unique).
+
+## Entity vocable
+- Text (column `vocable_text`, as entered, not blank, max 255)
+- Normalized text (column `vocable_text_normalized`, lower case for unique)
+- Language (`GERMAN` \| `ENGLISH`)
+- Required association (column `required_association_id`, `NOT NULL`, FK to `vocable_association`) — enforces at least one association on SQL insert
+- Context (`NOUN` \| `VERB` \| `ADJECTIVE`) — inheritance discriminator
+- Form, depending on context:
+  - Noun: `SINGULAR` \| `PLURAL`
+  - Verb: `PRESENT` \| `FIRST_PAST` \| `SECOND_PAST`
+  - Adjective: `BASE` \| `FIRST_COMPARATIVE` \| `SECOND_COMPARATIVE`
+
+## Entity vocable_association
+- German vocable (language `GERMAN`)
+- English vocable (language `ENGLISH`)
+
+An English vocable is always associated with at least one German vocable and vice versa. Both sides share context and form. Pair `(german_vocable_id, english_vocable_id)` is unique. Every vocable has `required_association_id NOT NULL`.
+
+Delete: remove vocables in the deletion chain first, then orphan rows in `vocable_association`. A vocable without an association is deleted. No vocable without a partner.
+
+Mapping: table `vocable` (single-table inheritance) and table `vocable_association`.

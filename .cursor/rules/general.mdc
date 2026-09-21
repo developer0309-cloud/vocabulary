@@ -2,11 +2,13 @@
 alwaysApply: true
 ---
 
-# Generelle Rahmenbedingungen
+# General project standards
 
-- Projektname Vokaltrainer
-- Maven 3.9 Projekt
+- Project name: Vokabeltrainer
+- Maven 3.9
 - Java 25
-- Typescript (strict mode)
-- Codeverwaltung in Github 
-- Github repository "vocabulary"
+- Quarkus (stable release)
+- TypeScript (strict mode)
+- GitHub repository: vocabulary
+- Program code is English: identifiers, comments, commit-facing messages, exception messages, and JPA table/column names
+- Domain documentation (README) may be German
